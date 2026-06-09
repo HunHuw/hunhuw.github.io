@@ -33,13 +33,13 @@ navToggle.addEventListener('click', () => {
 // Mock Data (Fallback)
 // ==========================================
 const mockArticles = [
-  { title: 'Výsledek schůzky výboru', content: 'Dne 15. 1. 2024 proběhla schůzka výboru SVJ...', created_at: '2024-01-15' },
-  { title: 'Plánovaná údržba výtahu', content: 'V termínu 20. - 22. 1. 2024 proběhne údržba...', created_at: '2024-01-10' }
+  { title: '--', content: '--', created_at: '2024-01-15' },
+  { title: '--', content: '--', created_at: '2024-01-10' }
 ]
 
 const mockEvents = [
-  { title: 'Shromáždění vlastníků', event_date: '2024-02-15', description: 'Výroční shromáždění vlastníků jednotek' },
-  { title: 'Úklid společných prostor', event_date: '2024-01-25', description: 'Jarní úklid vchodu a zahrady' }
+  { title: '--', event_date: '2024-02-15', description: '--' },
+  { title: '-', event_date: '2024-01-25', description: '--' }
 ]
 
 // ==========================================
