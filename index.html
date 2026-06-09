@@ -7,168 +7,99 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Navigation -->
   <header class="header">
     <div class="container nav-container">
-      <a href="#" class="logo">SVJ <span>Navigátorů 612-614</span></a>
-      
-      <button class="nav-toggle" id="navToggle" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
+      <a href="./index.html" class="logo">SVJ <span>Navigátorů 612-614</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
       <nav class="nav" id="nav">
-        <a href="#" class="nav-link active">Domů</a>
-        <a href="#" class="nav-link">Články</a>
-        <a href="#" class="nav-link">Události</a>
-        <a href="#" class="nav-link">Hlasování</a>
-        <a href="#" class="nav-link">Závady</a>
-        <div class="nav-dropdown">
-          <a href="#" class="nav-link">Další ▾</a>
-        </div>
-        <a href="#" class="nav-link">O společenství</a>
-        <a href="#" class="btn btn-primary">Můj účet</a>
+        <a href="./index.html" class="nav-link active">Domů</a>
+        <a href="./clanky.html" class="nav-link">Články</a>
+        <a href="./udalosti.html" class="nav-link">Události</a>
+        <a href="./hlasovani.html" class="nav-link">Hlasování</a>
+        <a href="./zavady.html" class="nav-link">Závady</a>
+        <a href="./dokumenty.html" class="nav-link">Další</a>
+        <a href="./o-spolecenstvi.html" class="nav-link">O společenství</a>
+        <a href="./ucet.html" class="btn btn-primary">Můj účet</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
     <div class="container">
       <h1>Vítejte</h1>
-      <p class="hero-text">
-        na internetových stránkách Společenství vlastníků Navigátorů 612-614.
-      </p>
+      <p class="hero-text">na internetových stránkách Společenství vlastníků Navigátorů 612-614.</p>
     </div>
   </section>
 
-  <!-- Main Cards Grid -->
   <main class="container main-content">
-    <div class="cards-grid" id="cardsGrid">
-      
-      <!-- Card 1 -->
+    <div class="cards-grid">
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1"></rect></svg></div>
         <h3 class="card-title">Administrace</h3>
         <p class="card-desc">Administrace domovníka, výboru a dalších orgánů SVJ a BD.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./administrace.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 2 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
         <h3 class="card-title">Všechny články</h3>
         <p class="card-desc">Výpis všech článků a aktualit společenství.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./clanky.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 3 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div>
         <h3 class="card-title">Kalendář událostí</h3>
         <p class="card-desc">Následující i minulé události.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./udalosti.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 4 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg></div>
         <h3 class="card-title">Dokumenty</h3>
         <p class="card-desc">Základní dokumenty (např. domovní řád, stanovy, zápisy...)</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./dokumenty.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 5 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg></div>
         <h3 class="card-title">Hlášení závad</h3>
         <p class="card-desc">Hlášení závad pro správce.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./zavady.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 6 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"></path></svg></div>
         <h3 class="card-title">Požadavky na výbor</h3>
         <p class="card-desc">Komunikace s výborem.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./pozadavky.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 7 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg></div>
         <h3 class="card-title">Adresář kontaktů</h3>
         <p class="card-desc">Seznam kontaktů na členy, kteří se je rozhodli zveřejnit.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./kontakty.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 8 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg></div>
         <h3 class="card-title">Hlasování a ankety</h3>
         <p class="card-desc">Hlasování per rolam a ankety.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./hlasovani.html" class="card-link">Pokračovat →</a>
       </div>
-
-      <!-- Card 9 -->
       <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        </div>
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg></div>
         <h3 class="card-title">O společenství</h3>
         <p class="card-desc">Informace o společenství.</p>
-        <a href="#" class="card-link">Pokračovat →</a>
+        <a href="./o-spolecenstvi.html" class="card-link">Pokračovat →</a>
       </div>
-
     </div>
 
-    <!-- Dynamic Content from Supabase -->
     <section class="dynamic-section">
-      <div class="dynamic-header">
-        <h2>Nejnovější články</h2>
-        <span class="badge" id="articlesBadge">Načítání...</span>
-      </div>
-      <div class="dynamic-grid" id="articlesList">
-        <!-- Filled by JS -->
-      </div>
+      <div class="dynamic-header"><h2>Nejnovější články</h2><span class="badge" id="articlesBadge">Načítání...</span></div>
+      <div class="dynamic-grid" id="articlesList"></div>
     </section>
-
     <section class="dynamic-section">
-      <div class="dynamic-header">
-        <h2>Nadcházející události</h2>
-        <span class="badge" id="eventsBadge">Načítání...</span>
-      </div>
-      <div class="dynamic-grid" id="eventsList">
-        <!-- Filled by JS -->
-      </div>
+      <div class="dynamic-header"><h2>Nadcházející události</h2><span class="badge" id="eventsBadge">Načítání...</span></div>
+      <div class="dynamic-grid" id="eventsList"></div>
     </section>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Společenství vlastníků Navigátorů 612-614. Všechna práva vyhrazena.</p>
-    </div>
-  </footer>
-
-  <!-- Supabase CDN -->
+  <footer class="footer"><div class="container"><p>© 2025 Společenství vlastníků Navigátorů 612-614</p></div></footer>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
   <script src="app.js"></script>
 </body>
