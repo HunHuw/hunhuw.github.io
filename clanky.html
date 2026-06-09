@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Články | SVJ Navigátorů 612-614</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="./index.html" class="logo">SVJ <span>Navigátorů 612-614</span></a>
+      <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav">
+        <a href="./index.html" class="nav-link">Domů</a>
+        <a href="./clanky.html" class="nav-link active">Články</a>
+        <a href="./udalosti.html" class="nav-link">Události</a>
+        <a href="./hlasovani.html" class="nav-link">Hlasování</a>
+        <a href="./zavady.html" class="nav-link">Závady</a>
+        <a href="./dokumenty.html" class="nav-link">Další</a>
+        <a href="./o-spolecenstvi.html" class="nav-link">O společenství</a>
+        <a href="./ucet.html" class="btn btn-primary">Můj účet</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-header"><div class="container"><h1>Všechny články</h1></div></section>
+
+  <main class="container main-content">
+    <div id="alertBox"></div>
+    <div class="data-list" id="list"></div>
+  </main>
+
+  <footer class="footer"><div class="container"><p>© 2025 SVJ Navigátorů 612-614</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script>
+    async function load() {
+      if (!isConnected) { showAlert('alertBox','Supabase není připojeno','error'); return }
+      const { data, error } = await supabaseClient.from('articles').select('*').order('created_at',{ascending:false})
+      const list = document.getElementById('list')
+      if (error || !data?.length) { list.innerHTML='<div class="empty-state">Žádné články.</div>'; return }
+      list.innerHTML = data.map(a=>`<div class="data-item"><h4>${escapeHtml(a.title)}</h4><p>${escapeHtml(a.content)}</p><div class="meta-row">${formatDate(a.created_at)}</div></div>`).join('')
+    }
+    document.addEventListener('DOMContentLoaded', load)
+  </script>
+</body>
+</html>
