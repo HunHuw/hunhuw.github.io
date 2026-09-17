@@ -9,8 +9,8 @@ const phoneInput = document.getElementById('phone')
 const unitInput = document.getElementById('unit')
 const photoInput = document.getElementById('photo')
 const fileNameDisplay = document.getElementById('fileName')
-const errorAlert = document.getElementById('errorAlert')
-const successAlert = document.getElementById('successAlert')
+const defectErrorAlert = document.getElementById('errorAlert')
+const defectSuccessAlert = document.getElementById('successAlert')
 const submitBtn = document.getElementById('submitBtn')
 
 // Mobile Menu
@@ -27,22 +27,22 @@ if (navToggle && nav) {
 // Show Alerts
 // ==========================================
 function showError(message) {
-  if (!errorAlert) return
-  errorAlert.textContent = message
-  errorAlert.classList.add('show')
-  if (successAlert) successAlert.classList.remove('show')
+  if (!defectErrorAlert) return
+  defectErrorAlert.textContent = message
+  defectErrorAlert.classList.add('show')
+  if (defectSuccessAlert) defectSuccessAlert.classList.remove('show')
   setTimeout(() => {
-    errorAlert.classList.remove('show')
+    defectErrorAlert.classList.remove('show')
   }, 5000)
 }
 
 function showSuccess(message) {
-  if (!successAlert) return
-  successAlert.textContent = message
-  successAlert.classList.add('show')
-  if (errorAlert) errorAlert.classList.remove('show')
+  if (!defectSuccessAlert) return
+  defectSuccessAlert.textContent = message
+  defectSuccessAlert.classList.add('show')
+  if (defectErrorAlert) defectErrorAlert.classList.remove('show')
   setTimeout(() => {
-    successAlert.classList.remove('show')
+    defectSuccessAlert.classList.remove('show')
   }, 5000)
 }
 
