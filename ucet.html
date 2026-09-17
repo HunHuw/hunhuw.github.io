@@ -151,39 +151,6 @@
       to { transform: rotate(360deg); }
     }
 
-    .form-switch {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 1rem;
-    }
-
-    .form-switch button {
-      flex: 1;
-      background: none;
-      border: none;
-      padding: 0.5rem 0;
-      cursor: pointer;
-      font-weight: 500;
-      color: var(--text-light);
-      border-bottom: 2px solid transparent;
-      transition: all 0.2s;
-    }
-
-    .form-switch button.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-    }
-
-    .form-content {
-      display: none;
-    }
-
-    .form-content.active {
-      display: block;
-    }
-
     .back-link {
       display: inline-flex;
       align-items: center;
@@ -285,13 +252,8 @@
         <div class="alert alert-error" id="errorAlert"></div>
         <div class="alert alert-success" id="successAlert"></div>
 
-        <div class="form-switch">
-          <button class="form-switch-btn active" data-form="login">Přihlášení</button>
-          <button class="form-switch-btn" data-form="register">Registrace</button>
-        </div>
-
         <!-- Přihlašovací formulář -->
-        <form class="form-content active" id="loginForm">
+        <form id="loginForm">
           <div class="form-group">
             <label for="loginEmail">Email</label>
             <input
@@ -317,60 +279,6 @@
           <button type="submit" class="btn-submit" id="loginBtn">
             <span class="loading-spinner"></span>
             Přihlásit se
-          </button>
-        </form>
-
-        <!-- Registrační formulář -->
-        <form class="form-content" id="registerForm">
-          <div class="form-group">
-            <label for="registerName">Jméno a příjmení</label>
-            <input
-              type="text"
-              id="registerName"
-              placeholder="Vaše jméno"
-              required
-              autocomplete="name"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="registerEmail">Email</label>
-            <input
-              type="email"
-              id="registerEmail"
-              placeholder="vase@email.cz"
-              required
-              autocomplete="email"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="registerPassword">Heslo</label>
-            <input
-              type="password"
-              id="registerPassword"
-              placeholder="Zvolte si heslo (min. 6 znaků)"
-              required
-              minlength="6"
-              autocomplete="new-password"
-            />
-          </div>
-
-          <div class="form-group">
-            <label for="registerPassword2">Potvrzení hesla</label>
-            <input
-              type="password"
-              id="registerPassword2"
-              placeholder="Opakujte heslo"
-              required
-              minlength="6"
-              autocomplete="new-password"
-            />
-          </div>
-
-          <button type="submit" class="btn-submit" id="registerBtn">
-            <span class="loading-spinner"></span>
-            Zaregistrovat se
           </button>
         </form>
       </div>
