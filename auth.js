@@ -2,20 +2,32 @@
 // AUTHENTICATION LOGIC
 // ==========================================
 
-// DOM Elements
-const loginForm = document.getElementById('loginForm')
-const authForm = document.getElementById('authForm')
-const userInfo = document.getElementById('userInfo')
-const errorAlert = document.getElementById('errorAlert')
-const successAlert = document.getElementById('successAlert')
-const logoutBtn = document.getElementById('logoutBtn')
-const navToggle = document.getElementById('navToggle')
-const nav = document.getElementById('nav')
+// DOM Elements (loaded in DOMContentLoaded to ensure they exist)
+let loginForm
+let authForm
+let userInfo
+let errorAlert
+let successAlert
+let logoutBtn
 
-// Mobile Menu Toggle
-navToggle?.addEventListener('click', () => {
-  nav?.classList.toggle('active')
-})
+// Initialize DOM Elements when page is ready
+function initializeElements() {
+  loginForm = document.getElementById('loginForm')
+  authForm = document.getElementById('authForm')
+  userInfo = document.getElementById('userInfo')
+  errorAlert = document.getElementById('errorAlert')
+  successAlert = document.getElementById('successAlert')
+  logoutBtn = document.getElementById('logoutBtn')
+  
+  // Setup event listeners
+  if (loginForm) {
+    loginForm.addEventListener('submit', handleLogin)
+  }
+  
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', handleLogout)
+  }
+}
 
 // ==========================================
 // Check Authentication State
@@ -99,7 +111,7 @@ function setLoading(button, loading) {
 // ==========================================
 // LOGIN
 // ==========================================
-loginForm?.addEventListener('submit', async (e) => {
+async function handleLogin(e) {
   e.preventDefault()
 
   if (!supabaseClient) {
@@ -135,27 +147,28 @@ loginForm?.addEventListener('submit', async (e) => {
   } finally {
     setLoading(loginBtn, false)
   }
-})
+}
 
 // ==========================================
 // LOGOUT
 // ==========================================
-logoutBtn?.addEventListener('click', async () => {
+async function handleLogout() {
   if (!supabaseClient) return
 
   try {
     await supabaseClient.auth.signOut()
     displayAuthForm()
-    loginForm.reset()
+    if (loginForm) loginForm.reset()
     showSuccess('Byli jste odhlášeni.')
   } catch (error) {
     showError('Chyba při odhlašování: ' + error.message)
   }
-})
+}
 
 // ==========================================
 // Initialize on Page Load
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+  initializeElements()
   checkAuthState()
 })
