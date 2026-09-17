@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Přihlášení - SVJ Navigátorů 612-614</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .auth-container {
+      min-height: calc(100vh - 64px - 60px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+
+    .auth-card h1 {
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .auth-card p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+    }
+
+    .form-group input::placeholder {
+      color: var(--text-light);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover:not(:disabled) {
+      background: var(--primary-dark);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .auth-link {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .auth-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .auth-link a:hover {
+      text-decoration: underline;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 6px;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .alert.show {
+      display: block;
+    }
+
+    .alert-error {
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      color: #16a34a;
+    }
+
+    .loading-spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-right: 0.5rem;
+    }
+
+    .btn-submit.loading .loading-spinner {
+      display: inline-block;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .form-switch {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .form-switch button {
+      flex: 1;
+      background: none;
+      border: none;
+      padding: 0.5rem 0;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-light);
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .form-switch button.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .form-content {
+      display: none;
+    }
+
+    .form-content.active {
+      display: block;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    .user-info {
+      display: none;
+      text-align: center;
+    }
+
+    .user-info.show {
+      display: block;
+    }
+
+    .user-avatar {
+      width: 64px;
+      height: 64px;
+      background: var(--primary-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+    }
+
+    .user-info h2 {
+      margin-bottom: 0.5rem;
+      color: var(--text);
+    }
+
+    .user-info p {
+      color: var(--text-light);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-logout {
+      width: 100%;
+      padding: 0.75rem;
+      background: #ef4444;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-logout:hover {
+      background: #dc2626;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav-container">
+      <a href="./index.html" class="logo">SVJ <span>Navigátorů 612-614</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav" id="nav">
+        <a href="./index.html" class="nav-link">Domů</a>
+        <a href="./clanky.html" class="nav-link">Články</a>
+        <a href="./udalosti.html" class="nav-link">Události</a>
+        <a href="./hlasovani.html" class="nav-link">Hlasování</a>
+        <a href="./zavady.html" class="nav-link">Závady</a>
+        <a href="./dokumenty.html" class="nav-link">Další</a>
+        <a href="./o-spolecenstvi.html" class="nav-link">O společenství</a>
+        <a href="./ucet.html" class="nav-link active">Můj účet</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="auth-container">
+    <div class="auth-card">
+      <a href="./index.html" class="back-link">← Zpět na domů</a>
+
+      <!-- Přihlášený uživatel -->
+      <div class="user-info" id="userInfo">
+        <div class="user-avatar">👤</div>
+        <h2 id="userName">Uživatel</h2>
+        <p id="userEmail">email@example.com</p>
+        <button class="btn-logout" id="logoutBtn">Odhlásit se</button>
+      </div>
+
+      <!-- Přihlašovací/Registrační formulář -->
+      <div id="authForm">
+        <h1>Přihlášení</h1>
+        <p>Přihlaste se do svého účtu</p>
+
+        <div class="alert alert-error" id="errorAlert"></div>
+        <div class="alert alert-success" id="successAlert"></div>
+
+        <div class="form-switch">
+          <button class="form-switch-btn active" data-form="login">Přihlášení</button>
+          <button class="form-switch-btn" data-form="register">Registrace</button>
+        </div>
+
+        <!-- Přihlašovací formulář -->
+        <form class="form-content active" id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="vase@email.cz"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Heslo</label>
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Vaše heslo"
+              required
+              autocomplete="current-password"
+            />
+          </div>
+
+          <button type="submit" class="btn-submit" id="loginBtn">
+            <span class="loading-spinner"></span>
+            Přihlásit se
+          </button>
+        </form>
+
+        <!-- Registrační formulář -->
+        <form class="form-content" id="registerForm">
+          <div class="form-group">
+            <label for="registerName">Jméno a příjmení</label>
+            <input
+              type="text"
+              id="registerName"
+              placeholder="Vaše jméno"
+              required
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="registerEmail">Email</label>
+            <input
+              type="email"
+              id="registerEmail"
+              placeholder="vase@email.cz"
+              required
+              autocomplete="email"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword">Heslo</label>
+            <input
+              type="password"
+              id="registerPassword"
+              placeholder="Zvolte si heslo (min. 6 znaků)"
+              required
+              minlength="6"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="registerPassword2">Potvrzení hesla</label>
+            <input
+              type="password"
+              id="registerPassword2"
+              placeholder="Opakujte heslo"
+              required
+              minlength="6"
+              autocomplete="new-password"
+            />
+          </div>
+
+          <button type="submit" class="btn-submit" id="registerBtn">
+            <span class="loading-spinner"></span>
+            Zaregistrovat se
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer"><div class="container"><p>© 2025 Společenství vlastníků Navigátorů 612-614</p></div></footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0/dist/umd/supabase.min.js"></script>
+  <script src="app.js"></script>
+  <script src="auth.js"></script>
+</body>
+</html>
