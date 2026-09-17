@@ -77,18 +77,20 @@ function displayAuthForm() {
 }
 
 function showError(message) {
+  if (!errorAlert) return
   errorAlert.textContent = message
   errorAlert.classList.add('show')
-  successAlert.classList.remove('show')
+  if (successAlert) successAlert.classList.remove('show')
   setTimeout(() => {
     errorAlert.classList.remove('show')
   }, 5000)
 }
 
 function showSuccess(message) {
+  if (!successAlert) return
   successAlert.textContent = message
   successAlert.classList.add('show')
-  errorAlert.classList.remove('show')
+  if (errorAlert) errorAlert.classList.remove('show')
   setTimeout(() => {
     successAlert.classList.remove('show')
   }, 5000)
