@@ -2,7 +2,7 @@
 // CONFIG: Paste your Supabase credentials here
 // ==========================================
 const SUPABASE_URL = 'https://aatrphwytongvaozwrrp.supabase.co'
-const SUPABASE_KEY = 'sb_publishable_khEBCsm_bWcpVk2cPN0hmw_PxfK79-v'
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFhdHJwaHd5dG9uZ3Zhb3p3cnJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk4MDU2ODYsImV4cCI6MjA5NTM4MTY4Nn0.zjxRdQW5P1tcHvXeUZeG2MDhsTqfMkF97o17EncyxeY'
 
 let supabaseClient = null
 let isConnected = false
