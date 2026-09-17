@@ -61,6 +61,7 @@ async function checkAuthState() {
 // Display Functions
 // ==========================================
 function displayUserInfo(user) {
+  if (!authForm || !userInfo) return
   authForm.style.display = 'none'
   userInfo.classList.add('show')
 
@@ -72,6 +73,7 @@ function displayUserInfo(user) {
 }
 
 function displayAuthForm() {
+  if (!authForm || !userInfo) return
   authForm.style.display = 'block'
   userInfo.classList.remove('show')
 }
@@ -97,6 +99,7 @@ function showSuccess(message) {
 }
 
 function setLoading(button, loading) {
+  if (!button) return
   button.disabled = loading
   if (loading) {
     button.classList.add('loading')
