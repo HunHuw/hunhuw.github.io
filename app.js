@@ -22,12 +22,16 @@ try {
 // ==========================================
 // Mobile Menu Toggle
 // ==========================================
-const navToggle = document.getElementById('navToggle')
-const nav = document.getElementById('nav')
-
-navToggle.addEventListener('click', () => {
-  nav.classList.toggle('active')
-})
+function initializeMobileMenu() {
+  const navToggle = document.getElementById('navToggle')
+  const nav = document.getElementById('nav')
+  
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      nav.classList.toggle('active')
+    })
+  }
+}
 
 // ==========================================
 // Mock Data (Fallback)
@@ -49,9 +53,11 @@ function renderArticles(articles) {
   const container = document.getElementById('articlesList')
   const badge = document.getElementById('articlesBadge')
   
+  if (!container || !badge) return
+  
   if (!articles || articles.length === 0) {
     container.innerHTML = '<div class="empty-state">Žádné články k zobrazení.</div>'
-    badge.textContent = '0 článků'
+    badge.textContent = '0 články'
     badge.className = 'badge'
     return
   }
@@ -71,6 +77,8 @@ function renderArticles(articles) {
 function renderEvents(events) {
   const container = document.getElementById('eventsList')
   const badge = document.getElementById('eventsBadge')
+  
+  if (!container || !badge) return
   
   if (!events || events.length === 0) {
     container.innerHTML = '<div class="empty-state">Žádné nadcházející události.</div>'
@@ -152,4 +160,7 @@ async function loadData() {
 // ==========================================
 // Initialize
 // ==========================================
-document.addEventListener('DOMContentLoaded', loadData)
+document.addEventListener('DOMContentLoaded', () => {
+  initializeMobileMenu()
+  loadData()
+})
