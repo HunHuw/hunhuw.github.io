@@ -2,10 +2,6 @@
 // DEFECT REPORTING LOGIC
 // ==========================================
 
-// Resend API configuration
-const RESEND_API_KEY = 're_RyXJjysf_JAwDbZ7af6r25yZFNFSx5iFd'
-const ADMIN_EMAIL = 'milda191919@gmail.com'
-
 // DOM Elements
 const defectForm = document.getElementById('defectForm')
 const emailInput = document.getElementById('email')
@@ -120,69 +116,9 @@ function fileToBase64(file) {
 }
 
 // ==========================================
-// Send Email via Resend
-// ==========================================
-async function sendEmailViaResend(defectData, photoBase64 = null) {
-  try {
-    // Vytvořit HTML obsah emailu
-    const emailContent = `
-      <h2>Nové hlášení závady</h2>
-      <p><strong>Email:</strong> ${defectData.email}</p>
-      <p><strong>Telefon:</strong> ${defectData.phone}</p>
-      <p><strong>Jednotka:</strong> ${defectData.unit}</p>
-      <p><strong>Kategorie:</strong> ${defectData.category}</p>
-      <p><strong>Urgentnost:</strong> ${defectData.urgency}</p>
-      <p><strong>Popis:</strong></p>
-      <p>${defectData.description.replace(/\n/g, '<br>')}</p>
-      <p><strong>Datum hlášení:</strong> ${new Date().toLocaleString('cs-CZ')}</p>
-      ${photoBase64 ? '<p><strong>Fotografie je připojena.</strong></p>' : ''}
-    `
-
-    // Příprava attachmentů
-    const attachments = []
-    if (photoBase64) {
-      // Base64 string na objekt
-      const base64Data = photoBase64.split(',')[1]
-      const fileName = photoInput.files[0].name
-      attachments.push({
-        filename: fileName,
-        content: base64Data,
-      })
-    }
-
-    // Odeslání přes Resend API
-    const response = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
-      body: JSON.stringify({
-        from: 'SVJ Navigátorů <noreply@resend.dev>',
-        to: ADMIN_EMAIL,
-        reply_to: defectData.email,
-        subject: `[Hlášení závady] ${defectData.category} - ${defectData.urgency}`,
-        html: emailContent,
-        ...(attachments.length > 0 && { attachments }),
-      }),
-    })
-
-    if (!response.ok) {
-      const error = await response.json()
-      throw new Error(error.message || 'Chyba při odesílání emailu')
-    }
-
-    return await response.json()
-  } catch (error) {
-    console.error('Email error:', error)
-    throw error
-  }
-}
-
-// ==========================================
 // Save to Supabase
 // ==========================================
-async function saveDefectToSupabase(defectData) {
+async function saveDefectToSupabase(defectData, photoBase64 = null) {
   try {
     const { data, error } = await supabaseClient
       .from('zavady')
@@ -194,8 +130,8 @@ async function saveDefectToSupabase(defectData) {
           category: defectData.category,
           description: defectData.description,
           urgency: defectData.urgency,
+          photo_data: photoBase64 || null,
           photo_filename: defectData.photoFilename || null,
-          created_at: new Date().toISOString(),
           status: 'Nové',
         },
       ])
@@ -247,14 +183,11 @@ defectForm?.addEventListener('submit', async (e) => {
       photoBase64 = await fileToBase64(photoInput.files[0])
     }
 
-    // Uložení do Supabase
-    await saveDefectToSupabase(formData)
-
-    // Odeslání emailu
-    await sendEmailViaResend(formData, photoBase64)
+    // Uložení do Supabase (Edge Function se spustí automaticky)
+    await saveDefectToSupabase(formData, photoBase64)
 
     // Úspěch
-    showSuccess('Hlášení bylo úspěšně odesláno! Děkujeme za vaši zprávu.')
+    showSuccess('Hlášení bylo úspěšně odesláno! Správce jej brzy prověří.')
     defectForm.reset()
     fileNameDisplay.textContent = ''
 
