@@ -127,8 +127,7 @@ loginForm?.addEventListener('submit', async (e) => {
     if (data.user) {
       showSuccess('Úspěšně přihlášeno!')
       setTimeout(() => {
-        displayUserInfo(data.user)
-        loginForm.reset()
+        window.location.href = './index.html'
       }, 1000)
     }
   } catch (error) {
