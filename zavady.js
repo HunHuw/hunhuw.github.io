@@ -13,16 +13,6 @@ const defectErrorAlert = document.getElementById('errorAlert')
 const defectSuccessAlert = document.getElementById('successAlert')
 const submitBtn = document.getElementById('submitBtn')
 
-// Mobile Menu
-const navToggle = document.getElementById('navToggle')
-const nav = document.getElementById('nav')
-
-if (navToggle && nav) {
-  navToggle.addEventListener('click', () => {
-    nav.classList.toggle('active')
-  })
-}
-
 // ==========================================
 // Show Alerts
 // ==========================================
